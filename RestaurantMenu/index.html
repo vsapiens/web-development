@@ -1,113 +1,128 @@
 <!DOCTYPE html>
+
 <html>
-  <head> </head>
+  <head>
+    <title>Restauraunt Menu</title>
+    <link rel="stylesheet" type="text/css" href="./css/style.css" />
+  </head>
   <body>
-    <nav>
-      <ul>
-        <li>
-          <a href="Home"> Home </a>
-        </li>
-        <li><a href="About"> About </a></li>
-        <li>
-          <a href="Reviews"> Reviews </a>
-        </li>
-      </ul>
-    </nav>
-    <p>
-      This is a sidebar!
-    </p>
-    <h1>
-      Welcome to our menu!
-    </h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Food</th>
-          <th>Description</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Salad</td>
-          <td>Fresh, delicious Cobb Salad</td>
-          <td>$7.99</td>
-        </tr>
-        <tr>
-          <td>Burger</td>
-          <td>1/4 lb grass-fed burger with choice of cheese</td>
-          <td>$6.99</td>
-        </tr>
-        <tr>
-          <td>Chicken Salad Sandwich</td>
-          <td>
-            Our world famous chicken salad on a bagel with a homemade pickles
-          </td>
-          <td>$8.99</td>
-        </tr>
-        <tr>
-          <td>Buffalo Chicken Sandwich</td>
-          <td>Spicy fried chicken on a brioche bun</td>
-          <td>$10.99</td>
-        </tr>
-        <tr>
-          <td>Fries</td>
-          <td>Hand cut potatoes lighlty fried and seasoned</td>
-          <td>$1.99</td>
-        </tr>
-        <tr>
-          <td>Soda</td>
-          <td>Regular, diet, orange, or root beer</td>
-          <td>$1.00</td>
-        </tr>
-      </tbody>
-    </table>
-    <form>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/about.html">About</a></li>
+          <li><a href="/review.html">Reviews</a></li>
+        </ul>
+      </nav>
+    </header>
+    <aside>
+      <p>This is the sidebar!</p>
+    </aside>
+
+    <h2>Welcome to our menu!</h2>
+    <section>
+      <table>
+        <thead>
+          <tr>
+            <th>Food</th>
+            <th>Description</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Salad</td>
+            <td>Fresh, delicious Cobb Salad</td>
+            <td>$7.99</td>
+          </tr>
+          <tr>
+            <td>Burger</td>
+            <td>1/4 lb grass-fed burger with choice of cheese</td>
+            <td>$6.99</td>
+          </tr>
+          <tr>
+            <td>Chicken Salad Sandwich</td>
+            <td>
+              Our world famous chicken salad on a bagel with homemade pickles
+            </td>
+            <td>$8.99</td>
+          </tr>
+          <tr>
+            <td>Buffalo Chicken Sandwich</td>
+            <td>Spicy fried chicken on a brioche bun</td>
+            <td>$10.99</td>
+          </tr>
+          <tr>
+            <td>Fries</td>
+            <td>Hand cut potatoes lightly fried and seasoned</td>
+            <td>$1.99</td>
+          </tr>
+          <tr>
+            <td>Soda</td>
+            <td>Regular,diet, orange,or root beer</td>
+            <td>$1.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <form action="" method="GET">
       <fieldset>
         <legend>Leave us a comment</legend>
         <div>
-          <label>
-            First Name : <input type="text" id="fname" name="fname" />
+          <label for="firstnameInput">
+            First name : <input type="text" id="firstnameInput" />
           </label>
         </div>
         <div>
-          <label>
-            Last Name : <input type="text" id="lname" name="lname" />
+          <label for="lastnameInput">
+            Last name : <input type="text" id="lastnameInput" />
           </label>
         </div>
         <div>
-          <label>
-            Email : <input type="email" id="fname" name="fname" />
+          <label for="emailInput">
+            Email : <input type="email" id="emailInput" />
           </label>
         </div>
         <div>
-          <label>
-            Phone Number : <input type="tel" id="fname" name="fname" />
+          <label for="phonenumberInput">
+            Phone number : <input type="tel" id="phonenumberInput" />
           </label>
         </div>
         <div>
-          Rate Us:
-        </div>
-        <select name="rate">
-          <option value="vgood"> Very Good</option>
-          <option value="good"> Good</option>
-          <option value="bad"> Bad</option>
-        </select>
-        <div>Your Comment:</div>
-        <div><textarea></textarea></div>
-        <div>Would you visit us again?</div>
-        <div>
-          <label> Yes : <input type="radio" id="yes" name="visit" /> </label>
+          Rate us:
+          <select name="rate">
+            <option value="very_good">Very good</option>
+            <option value="good">Good</option>
+            <option value="okay">Okay</option>
+            <option value="not_good">Not Good</option>
+            <option value="bad">Bad</option>
+          </select>
         </div>
         <div>
-          <label> No: <input type="radio" id="no" name="visit" /> </label>
+          Your comment:
+          <textarea cols="50" rows="4"></textarea>
         </div>
-
-        <button>Submit</button>
+        <div>
+          Would you visit us again?
+          <div>
+            <label for="yesInput">
+              Yes : <input type="radio" name="visit" id="yesInput" />
+            </label>
+          </div>
+          <div>
+            <label for="noInput">
+              No : <input type="radio" name="visit" id="noInput" />
+            </label>
+          </div>
+        </div>
+        <label for="submitButton">
+          <input type="submit" id="submitButton" value="Submit" />
+        </label>
       </fieldset>
     </form>
+    <footer>
+      This is where any content in the footer would go
+    </footer>
   </body>
-  <footer>
-    This is where any content in the footer would go
-  </footer>
 </html>
