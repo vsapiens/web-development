@@ -1,5 +1,5 @@
 body {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, sans-serif;
   font-size: 13 px;
   color: #4f545f;
   margin: 0;
@@ -11,4 +11,89 @@ h2 {
   margin: 0;
   padding: 20px;
   color: white;
+}
+
+fieldset {
+  margin: 20;
+  padding: 20px;
+  border: 2px dashed #ddd;
+}
+legend {
+  font-size: 16px;
+  font-weight: 900;
+}
+fieldset > span {
+  color: #6278b0;
+  padding: 20px 40px;
+  display: block;
+  background: url(".././assets/img01.jpg") no-repeat center left #cce9f8;
+  background-size: 20px 20px;
+  border: 1px solid #6278b0;
+  margin-bottom: 10px;
+}
+.formElement {
+  padding: 5px 10px;
+  width: 300px;
+}
+select[name="rate"] {
+  font-size: 14px;
+  width: 250px;
+}
+#submitButton,
+#resetButton {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 0;
+  color: white;
+  border-radius: 5px;
+}
+#submitButton {
+  background-color: #56c56f;
+}
+#resetButton {
+  background-color: #d9534f;
+}
+.clickable:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+table {
+  border: 1px solid #eee;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  color: #999;
+  border: 1px solid #eee;
+  padding: 15px 35px;
+}
+th {
+  color: white;
+  background-color: #55b3c5;
+  text-transform: uppercase;
+}
+tr:hover {
+  background-color: #f4f4f4;
+}
+td:hover {
+  color: #555;
+}
+
+ul {
+  background-color: #ccc;
+  list-style-type: none;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+  padding: 20px;
+}
+li:hover,
+li > a:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #999;
 }

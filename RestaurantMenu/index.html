@@ -69,24 +69,30 @@
     <form action="" method="GET">
       <fieldset>
         <legend>Leave us a comment</legend>
+        <span>
+          We will not share this information with anyone.
+        </span>
         <div>
           <label for="firstnameInput">
-            First name : <input type="text" id="firstnameInput" />
+            First name :
+            <input type="text" id="firstnameInput" class="formElement" />
           </label>
         </div>
         <div>
           <label for="lastnameInput">
-            Last name : <input type="text" id="lastnameInput" />
+            Last name :
+            <input type="text" id="lastnameInput" class="formElement" />
           </label>
         </div>
         <div>
           <label for="emailInput">
-            Email : <input type="email" id="emailInput" />
+            Email : <input type="email" id="emailInput" class="formElement" />
           </label>
         </div>
         <div>
           <label for="phonenumberInput">
-            Phone number : <input type="tel" id="phonenumberInput" />
+            Phone number :
+            <input type="tel" id="phonenumberInput" class="formElement" />
           </label>
         </div>
         <div>
@@ -107,17 +113,42 @@
           Would you visit us again?
           <div>
             <label for="yesInput">
-              Yes : <input type="radio" name="visit" id="yesInput" />
+              Yes :
+              <input
+                type="radio"
+                name="visit"
+                id="yesInput"
+                class="formElement"
+              />
             </label>
           </div>
           <div>
             <label for="noInput">
-              No : <input type="radio" name="visit" id="noInput" />
+              No :
+              <input
+                type="radio"
+                name="visit"
+                id="noInput"
+                class="formElement"
+              />
             </label>
           </div>
         </div>
         <label for="submitButton">
-          <input type="submit" id="submitButton" value="Submit" />
+          <input
+            type="submit"
+            id="submitButton"
+            value="Submit"
+            class="clickable"
+          />
+        </label>
+        <label for="resetButton">
+          <input
+            type="submit"
+            id="resetButton"
+            value="Reset"
+            class="clickable"
+          />
         </label>
       </fieldset>
     </form>
