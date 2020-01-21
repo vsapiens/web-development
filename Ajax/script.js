@@ -38,9 +38,10 @@ function displayResults(responseJSON) {
   <h1> Your random image </h1>
   <p> 
   <img src="${responseJSON.message}" />
-  </p>
+  </p>fe
   `;
 }
+
 function watchForm() {
   let form = document.getElementById("randomDog");
   form.addEventListener("submit", event => {
