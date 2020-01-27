@@ -2,6 +2,9 @@ let express = require("express");
 let morgan = require("morgan");
 let bodyParser = require("body-parser");
 let jsonParser = bodyParser.json();
+let mongoose = require("mongoose");
+let { StudentList } = require("./model");
+let { DATABASE_URL, PORT } = require("./config");
 
 let app = express();
 app.use(express.static("public"));
@@ -29,21 +32,18 @@ let estudiantes = [
     matricula: 1039888
   }
 ];
+
 app.get("/api/getById", (req, res) => {
   let id = req.query.id;
 
-  let result = estudiantes.find(elemento => {
-    if (elemento.matricula == id) {
-      return elemento;
-    }
-  });
-
-  if (result) {
-    return res.status(200).json(result);
-  } else {
-    res.statusMessage = "no existe el alumno en la base de datos";
-    return res.status(404).send();
-  }
+  StudentList.findOneByMatricula(id)
+    .then(result => {
+      return res.status(200).json(result);
+    })
+    .catch(error => {
+      res.statusMessage = "no existe el alumno en la base de datos";
+      return res.status(404).send();
+    });
 });
 
 app.get("/api/getByName/:name", (req, res) => {
@@ -69,27 +69,26 @@ app.post("/api/newStudent", jsonParser, (req, res) => {
     res.statusMessage = "No tiene las propiedades suficientes";
     return res.status(406).send();
   }
-
-  let finder = estudiantes.find(elem => {
-    if (elem.matricula === student.matricula) {
-      return elem;
+  StudentList.findOneByMatricula(student.matricula).then(result => {
+    if (result) {
+      res.statusMessage = `Ya existe esta matricula ${student.matricula}`;
+      return res.status(409).send();
+    } else {
+      let newStudent = {
+        nombre: student.nombre,
+        apellido: student.apellido,
+        matricula: student.matricula
+      };
+      StudentList.create(newStudent)
+        .then(stud => {
+          res.statusMessage = "Nuevo estudiante añadido";
+          return res.status(201).send(stud);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   });
-
-  if (finder) {
-    res.statusMessage = "Ya existe esta matricula";
-    console.log(estudiantes);
-    return res.status(409).send();
-  } else {
-    let newStudent = {
-      nombre: student.name,
-      apellido: student.apellido,
-      matricula: student.matricula
-    };
-    estudiantes.push(newStudent);
-    res.statusMessage = "Nuevo estudiante añadido";
-    return res.status(201).send(newStudent);
-  }
 });
 
 app.put("/api/updateStudent/:id", (req, res) => {
@@ -117,11 +116,52 @@ app.delete("/api/deleteStudent?id=matricula", (req, res) => {
   }
 });
 app.get("/api/students", (req, res) => {
-  console.log(req);
-
-  return res.status(200).json(estudiantes);
+  StudentList.getAll()
+    .then(studentList => {
+      return res.status(200).json(studentList);
+    })
+    .catch(error => {
+      res.statusMessage = "Error en la conexión de base de datos";
+      return res.status(500).send();
+    });
 });
 
-app.listen(8080, () => {
-  console.log("Servidor corriendo en el puerto 8080");
-});
+let server;
+function runServer(port, databaseUrl) {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(databaseUrl, response => {
+      if (response) {
+        return reject(response);
+      } else {
+        server = app
+          .listen(port, () => {
+            console.log("App is running on port " + port);
+            resolve();
+          })
+          .on("error", err => {
+            mongoose.disconnect();
+            return reject(err);
+          });
+      }
+    });
+  });
+}
+
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log("Closing the server");
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        } else {
+          resolve();
+        }
+      });
+    });
+  });
+}
+
+runServer(PORT, DATABASE_URL);
+
+module.exports = { app, runServer, closeServer };
